@@ -20,6 +20,6 @@ got
 love
 ya
 }}}
-Numbers are added automatically. Each word will be added twice, once like you wrote and once with the first letter capitalized, so you just have to write your words once if you are not shure if you first letter was uppercase or lowercase
+Numbers are added automatically. Each word will be added twice, once like you wrote and once with the first letter capitalized, so you just have to write your words once if your are not shure if you first letter was uppercase or lowercase
 
 Good luck 
