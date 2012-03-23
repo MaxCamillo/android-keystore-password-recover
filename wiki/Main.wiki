@@ -1,4 +1,3 @@
-
 =Android Keystore Password Recovery= 
 
 
@@ -8,9 +7,9 @@ A few weeks ago I just forgot the password for my android keystore, so I cant up
 
 There are 3 Methods to recover your keystore password:
 
-# 1 - Simply Bruteforce 
-# 2 - Dictionary Attack
-# 3 - Smart Wordlist Attack
+  # 1 - Simply Bruteforce 
+  # 2 - Dictionary Attack
+  # 3 - Smart Wordlist Attack
 
 In my opinion the last option is the best. You specify some password segments in a textfile. All the segments will be permute and mixed together with numbers. e.g:
 
