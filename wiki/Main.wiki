@@ -15,10 +15,11 @@ In my opinion the last option is the best. You specify some password segments in
 
 your password is: got2loveYa11
 in your dictionary should be:
+{{{
 got
 love
 ya
-
+}}}
 Numbers are added automatically. Each word will be added twice, once like you wrote and once with the first letter capitalized, so you just have to write your words once if you are not shure if you first letter was uppercase or lowercase
 
 Good luck 
