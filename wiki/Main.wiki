@@ -1,0 +1,8 @@
+Android Keystore Password Recovery 
+
+A few weeks ago I just forgot the password for my android keystore, so I cant update my app for the market. So I decided to code a little bruteforcing tool to recovery my password.
+
+= Details =
+
+There are 3 Methods to recover your keystore password:
+1 - 
