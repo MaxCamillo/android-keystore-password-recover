@@ -1,0 +1,29 @@
+#labels Phase-Deploy
+
+= How To =
+
+=== execute with ===
+
+{{{
+java -jar AndroidKeystoreBrute.jar <args>
+}}}
+
+=== possible args ===
+{{{
+-m <1..3> Method
+-k <path>  path to your keystore
+-d <path> dictionary (for method 2 and 3)
+-h prints helpscreen
+}}}
+
+=== example for brute-force attack ===
+{{{
+java -jar AndroidKeystoreBrute.jar -m 1 -k <...keystore> 
+}}}
+
+=== example for dictionary attack ===
+{{{
+java -jar AndroidKeystoreBrute.jar -m 2 -k "C:\\mykeystore.keystore" -d "wordlist.txt" 
+}}}
+
+*If there are any spaces in path or filenames, you have to use quotes for the path!!*
