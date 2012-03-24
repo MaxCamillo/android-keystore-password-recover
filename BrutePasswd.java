@@ -108,6 +108,7 @@ public class BrutePasswd {
                            ((System.currentTimeMillis() - initTime) / 1000) +
                            " seconds");
         System.out.println("Password is: " + passwd + " for alias " + alias);
+        AndroidKeystoreBrute.found = true;
       }
     } catch (Exception e) {
       e.printStackTrace();
