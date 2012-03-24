@@ -1,8 +1,8 @@
 /**
   *
-  * Beschreibung
   *
-  * @version 1.0 vom 23.03.2012
+  *
+  * @version 1.01 vom 24.03.2012
   * @author
   */
 
@@ -11,6 +11,8 @@ public class AndroidKeystoreBrute {
   static final int BRUTE = 1;
   static final int WORD = 2;
   static final int SWORD = 3;
+  static final String VERSION = "1.01";
+  public static boolean found = false;
   public static void main(String[] args) throws Exception{
 
     int method = 0;
@@ -63,10 +65,15 @@ public class AndroidKeystoreBrute {
     if(method == SWORD){
       SmartWordlistPasswd.doit(keystore,dict);
     }
+    
+    System.out.println("\r\nFor updates visit http://code.google.com/p/android-keystore-password-recover/");
+    
+
   }
   
   static void printhelp(){
-      System.out.println("Keystorehackingtool by M@xiking");
+      System.out.println("AndroidKeystorePasswordRecoveryTool by M@xiking\r\n");
+      System.out.println("Version "+VERSION);
       System.out.println("There are 3 Methods to recover the key for your Keystore:\r\n");
       System.out.println("1: simply bruteforce - good luck");
       System.out.println("2: dictionary attack - your password has to be in the dictionary");
