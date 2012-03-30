@@ -1,6 +1,11 @@
-#labels Phase-Deploy
-
+#labels Phase-Deploy,Featured
 = How To =
+
+
+* Java 7 is required to run this tool!! *
+
+download [http://www.oracle.com/technetwork/java/javase/downloads/java-se-jre-7-download-432155.html here]
+
 
 === execute with ===
 
