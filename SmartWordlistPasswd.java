@@ -49,9 +49,12 @@ public class SmartWordlistPasswd {
   static int testedPwds = 0;
   static String[] s;
   static ArrayList<String> words = new ArrayList<String>();
+  
+  //for permutations
+  private static ArrayList<String> LetterCombos = new ArrayList<String>();
 
 
-  public static void doit(String keystore,String wordlist ) throws Exception {
+  public static void doit(String keystore,String wordlist,boolean permutations ) throws Exception {
     String pass = "a";
     InputStream in = new FileInputStream(keystore);
     int plength = 1;
@@ -73,12 +76,15 @@ public class SmartWordlistPasswd {
 
       in.close();
 
-     BufferedReader file = new BufferedReader(new InputStreamReader(new FileInputStream(wordlist)));
+      BufferedReader file = new BufferedReader(new InputStreamReader(new FileInputStream(wordlist)));
       
       in = new FileInputStream(keystore);
       SmartWordlistPasswd.engineLoad(in, pass.toCharArray());
       System.out.println("\r\nStart smart wordlist attack on key!!\r\n");
-
+      if(permutations)
+        System.out.println("Use common replacements");
+      else
+        System.out.println("Capitalize first letter");
       long initTime = System.currentTimeMillis();
       new SmartWordlistBenchmark().start();
 
@@ -87,15 +93,53 @@ public class SmartWordlistPasswd {
         //skip empty String
         if(word.equals(""))
           continue;
-        words.add(word);
-        //Capitalize first Letter
-        char[] stringArray = word.toCharArray();
-        //skip if already is uppercase
-        if(Character.isUpperCase(stringArray[0]))
-          continue;
-        stringArray[0] = Character.toUpperCase(stringArray[0]);
-        word = new String(stringArray);
-        words.add(word);
+          
+        if(!permutations){
+          words.add(word);
+          //Capitalize first Letter
+          char[] stringArray = word.toCharArray();
+          //skip if already is uppercase
+          if(Character.isUpperCase(stringArray[0]))
+            continue;
+          stringArray[0] = Character.toUpperCase(stringArray[0]);
+          word = new String(stringArray);
+          words.add(word);
+        }else{
+          //use common replacements
+          //let's get some common replacement letters
+          
+          LetterCombos.add("aA@4^");
+          LetterCombos.add("bB8");
+          LetterCombos.add("cC(");
+          LetterCombos.add("dD");
+          LetterCombos.add("eE3€");
+          LetterCombos.add("fF");
+          LetterCombos.add("gG");
+          LetterCombos.add("hH");
+          LetterCombos.add("iIl1!|");
+          LetterCombos.add("jJ");
+          LetterCombos.add("kK");
+          LetterCombos.add("lL1");
+          LetterCombos.add("mM");
+          LetterCombos.add("nN");
+          LetterCombos.add("oO0");
+          LetterCombos.add("pP");
+          LetterCombos.add("qQ");
+          LetterCombos.add("rR");
+          LetterCombos.add("sS5$");
+          LetterCombos.add("tT+7");
+          LetterCombos.add("uU");
+          LetterCombos.add("vV");
+          LetterCombos.add("wW");
+          LetterCombos.add("xX");
+          LetterCombos.add("yY");
+          LetterCombos.add("zZ2");
+          
+          for(String p:getPermutations(word)){
+            words.add(p);
+          }
+        }
+        
       }
       
       file.close();
@@ -137,7 +181,7 @@ public class SmartWordlistPasswd {
       if (k == s.length) {
         //System.out.println(s);
         currentPass = sArrayToString(s);
-        System.out.println(currentPass);
+        //System.out.println(currentPass);
         try {
           testedPwds++;
 
@@ -171,6 +215,43 @@ public class SmartWordlistPasswd {
     return str;
   }
 
+  
+  private static ArrayList<String> getPermutations(String word) {
+    ArrayList<String> returnPerms = new ArrayList<String>();
+    for(String letter : getLetterPermutations(Character.toString(word.charAt(0))))
+      if (word.length()>1)
+        for(String permutation : getPermutations(word.substring(1)))
+          returnPerms.add(letter + permutation);
+      else
+        returnPerms.add(letter);
+    return returnPerms;
+  }
+
+  //Word permutaion methods by Jeff Lauder
+  
+  
+  
+  private static ArrayList<String> getLetterPermutations(String letter) {
+    ArrayList<String> returnLetters = new ArrayList<String>();
+
+    
+
+    //then we'll apply them
+    for(String letterCombo : LetterCombos)
+    {
+      if(letterCombo.contains(letter))
+      {
+        for(char returnletter : letterCombo.toCharArray())
+          returnLetters.add(Character.toString(returnletter));
+        return returnLetters;
+      }
+    }
+
+    //and we'll default to the upper and lower case if not otherwise specified
+    returnLetters.add(letter.toLowerCase());
+    returnLetters.add(letter.toUpperCase());
+    return returnLetters;
+  }
   //--------------------------------JKS Methods------------------------------------------
   private static final int MAGIC = 0xFEEDFEED;
   static byte[] encoded;
