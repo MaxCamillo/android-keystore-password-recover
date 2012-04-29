@@ -11,13 +11,14 @@ public class AndroidKeystoreBrute {
   static final int BRUTE = 1;
   static final int WORD = 2;
   static final int SWORD = 3;
-  static final String VERSION = "1.01";
+  static final String VERSION = "1.02";
   public static boolean found = false;
   public static void main(String[] args) throws Exception{
 
     int method = 0;
     String keystore = "";
     String dict = "";
+    boolean permutations = false;
     if(args.length==0){
       printhelp();
       return;
@@ -45,11 +46,16 @@ public class AndroidKeystoreBrute {
           dict = args[i];
           break;
         }
+        
+         case "-p":{
+          permutations = true;
+          break;
+        }
       }
       
     }
     
-    if(method == 0){
+    if(method == 0 || method > 3){
       printhelp();
       return;
     }
@@ -63,11 +69,10 @@ public class AndroidKeystoreBrute {
     }
     
     if(method == SWORD){
-      SmartWordlistPasswd.doit(keystore,dict);
+      SmartWordlistPasswd.doit(keystore,dict,permutations);
     }
     
     System.out.println("\r\nFor updates visit http://code.google.com/p/android-keystore-password-recover/");
-    
 
   }
   
@@ -82,6 +87,12 @@ public class AndroidKeystoreBrute {
       System.out.println("-m <1..3> Method");
       System.out.println("-k <path>  path to your keystore");
       System.out.println("-d <path> dictionary (for method 2 and 3)");
-      System.out.println("-h prints this helpscreen");
+      System.out.println("-p use common replacements like '@' for 'a'(for method 3)\r\n");
+      System.out.println("-h prints this helpscreen\r\n");
+      
+      long maxBytes = Runtime.getRuntime().maxMemory();
+      System.out.println("Max memory: " + maxBytes / 1024 / 1024 + "M");
+      
+      System.out.println("\r\nFor updates visit http://code.google.com/p/android-keystore-password-recover/");
   }
 }

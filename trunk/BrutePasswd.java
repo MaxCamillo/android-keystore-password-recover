@@ -29,12 +29,13 @@ import java.security.cert.CertificateFactory;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 
-import java.util.*;
+
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Vector;
+
 
 import javax.crypto.EncryptedPrivateKeyInfo;
 import javax.crypto.spec.SecretKeySpec;
@@ -63,6 +64,9 @@ public class BrutePasswd {
     char[] pass = new char[1];
     InputStream in = new FileInputStream(keystore);
     int plength = 1;
+    
+
+
 
     try {
       j = new JKS();
