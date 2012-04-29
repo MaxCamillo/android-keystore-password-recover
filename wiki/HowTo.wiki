@@ -18,7 +18,7 @@ java -jar AndroidKeystoreBrute.jar <args>
 -m <1..3> Method
 -k <path>  path to your keystore
 -d <path> dictionary (for method 2 and 3)
--p use common replacements like '@' for 'a'(for method 3) *WARNING - very slow!! * 
+-p use common replacements like '@' for 'a'(for method 3) WARNING - very slow!! 
 -h prints helpscreen
 }}}
 
