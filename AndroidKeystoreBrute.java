@@ -87,7 +87,7 @@ public class AndroidKeystoreBrute {
       System.out.println("-m <1..3> Method");
       System.out.println("-k <path>  path to your keystore");
       System.out.println("-d <path> dictionary (for method 2 and 3)");
-      System.out.println("-p use common replacements like '@' for 'a'(for method 3)\r\n");
+      System.out.println("-p use common replacements like '@' for 'a'(for method 3) WARNING - very slow!!\r\n");
       System.out.println("-h prints this helpscreen\r\n");
       
       long maxBytes = Runtime.getRuntime().maxMemory();
