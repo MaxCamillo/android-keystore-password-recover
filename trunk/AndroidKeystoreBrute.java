@@ -5,7 +5,7 @@ public class AndroidKeystoreBrute
   static final int BRUTE = 1;
   static final int WORD = 2;
   static final int SWORD = 3;
-  static final String VERSION = "1.03";
+  static final String VERSION = "1.04";
   public static boolean found = false;
   public static boolean saveNewKeystore = false;
   
@@ -61,6 +61,7 @@ public class AndroidKeystoreBrute
     }
     
     if (method == 1) {
+      
       BrutePasswd.doit(keystore, minSize);
     }
     

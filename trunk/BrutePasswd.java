@@ -41,15 +41,20 @@ import javax.crypto.EncryptedPrivateKeyInfo;
 import javax.crypto.spec.SecretKeySpec;
 
 
-public class BrutePasswd {
+public class BrutePasswd extends Thread {
   static String alias = "";
+  static String keystoreFileName;
   static JKS j;
-  static boolean found = false;
-  static char[] currentPass = { 'a' };
-  static String passwd = null;
+  static volatile boolean found = false;
+  
+  static int numberOfThreads = 8;
+  
+  static String passwd = null;  
   static int testedPwds = 0;
-  static char[] s;
-  static char[] chars = {
+  
+  static char[] currPass;
+  
+  static char[] alphabet = {
     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
     'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
     'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g',
@@ -58,15 +63,50 @@ public class BrutePasswd {
     '3', '4', '5', '6', '7', '8', '9',
   };
   
+  public BrutePasswd()throws Exception{
+    
+    FileInputStream in = new FileInputStream(keystoreFileName);
+    engineLoad(in, currPass);    
+  }
+  public void run(){
+    char[] str = new char[1];
+    while (!found) { 
+      str = nextWord(str);
+      if(keyIsRight(str)){
+        passwd = String.copyValueOf(str);
+        found = true;
+        //We are lucky
+        System.out.println("Got Password!");
+        System.out.println("Password is: " + passwd + " for alias " + alias);
+        
+        try{
+          if (AndroidKeystoreBrute.saveNewKeystore) {
+            j.engineStore(new FileOutputStream(keystoreFileName+"_recovered"),new String(passwd).toCharArray());
+            System.out.println("Saved new keystore to: "+ keystoreFileName+"_recovered");
+          } // end of if
+          AndroidKeystoreBrute.found = true;
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+      }
+    } // end of while
+  }
   public static void doit(String keystore) throws Exception {
+    
     doit(keystore,1);
   }
   
   public static void doit(String keystore,int min) throws Exception {
-    char[] pass = new char[min];    
-    InputStream in = new FileInputStream(keystore);
-    int plength = min;
     
+    char[] pass = new char[min];  
+    for (int i = 0;i < min ;i++ ) {
+      pass[i] = 'A';
+    } // end of for
+    
+    InputStream in = new FileInputStream(keystore);
+    currPass = pass;
+    
+    numberOfThreads = Runtime.getRuntime().availableProcessors() * 2;
     
     try {
       j = new JKS();
@@ -83,91 +123,77 @@ public class BrutePasswd {
       }
       
       in.close();
-      in = new FileInputStream(keystore);
-      BrutePasswd.engineLoad(in, pass);
-      System.out.println("\r\nStart bruteforce on key!!\r\n");
       
-      long initTime = System.currentTimeMillis();
+      keystoreFileName = keystore;
+      
+      for (int i = 0;i< numberOfThreads ;i++ ) {
+        Thread t = new BrutePasswd();
+        t.start();
+      } // end of for
+      
       new BruteBenchmark().start();
       
-      while (!found) {
-        //plength = 7;
-        //make new char[] with specific length
-        s = new char[plength];
-        recurse(0);
-        //try all chars with specific length
-        
-        //recurse(4);
-        
-        //tried all combinations; extend pwd length
-        plength++;
-      }
+      System.out.println("Fire up " +numberOfThreads+ " Threads");
       
-      if (found) {
-        //We are lucky
-        System.out.println("Got Password in " +
-        ((System.currentTimeMillis() - initTime) / 1000) +
-        " seconds");
-        System.out.println("Password is: " + passwd + " for alias " + alias);
-        
-        if (AndroidKeystoreBrute.saveNewKeystore) {
-          j.engineStore(new FileOutputStream(keystore+"_recovered"),new String(passwd).toCharArray());
-          System.out.println("Saved new keystore to: "+ keystore+"_recovered");
-        } // end of if
-        AndroidKeystoreBrute.found = true;
-      }
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
   
-  //compute all possible combinations by recursion
-  private static void recurse(int k) {
-    if (!found) {
-      if (k == s.length) {
-        //System.out.println(s);
-        currentPass = s;
-        
-        try {
-          testedPwds++;
-          
-          //if this throws an Exception; pwd  is false
-          if (keyIsRight(s)) {
-            found = true;
-            passwd = String.valueOf(s);
-            
-            return;
-          }
-        } catch (Exception e) {
-          //passwd was wrong
-          // System.out.println("fail");
-        }
-      } else {
-        int kinc = k + 1;
-        
-        for (char o : chars) {
-          s[k] = o;
-          recurse(kinc);
+  
+  public synchronized static char[] nextWord(char[] str) {
+    testedPwds++;
+    currPass =  nextWord(currPass, currPass.length-1);
+    if (str.length != currPass.length) {
+      str = new char[currPass.length];
+    } // end of if
+    
+    System.arraycopy(currPass, 0, str, 0, currPass.length);
+    return  str;
+  }
+  
+  public static char[] nextWord(char[] word, int stelle) {
+    
+    if(word[stelle] == alphabet[alphabet.length - 1]) {
+      word[stelle] = alphabet[0];
+      if (stelle > 0) {
+        return nextWord(word, stelle - 1);
+      } else{
+        char[] longerWord = new char[word.length +1];
+        longerWord[0] = alphabet[0];
+        System.arraycopy(word,0,longerWord,1,word.length);
+        return longerWord;
+      }
+    }
+    else{
+      for (int i = 0; i< alphabet.length; i++){
+        if (word[stelle] == alphabet[i]){
+          word[stelle] = alphabet[i+1];
+          break;
         }
       }
+      return word;
     }
   }
   
   //--------------------------------JKS Methods------------------------------------------
   private static final int MAGIC = 0xFEEDFEED;
-  static byte[] encoded;
-  static Certificate[] chain;
-  static MessageDigest sha;
-  static byte[] key;
-  static byte[] keystream;
-  static byte[] encr;
-  static byte[] check;
+  
+  private byte[] encoded;
+  private Certificate[] chain;
+  private MessageDigest sha;
+  private byte[] key;
+  private byte[] keystream;
+  private byte[] encr;
+  private byte[] check;
+  
   private static final int PRIVATE_KEY = 1;
   private static final int TRUSTED_CERT = 2;
   
-  public static void engineLoad(InputStream in, char[] passwd)
+  public void engineLoad(InputStream in, char[] passwd)
   throws IOException, NoSuchAlgorithmException,
   CertificateException {
+    
     MessageDigest md = MessageDigest.getInstance("SHA");
     md.update(charsToBytes(passwd));
     md.update("Mighty Aphrodite".getBytes("UTF-8")); // HAR HAR
@@ -232,7 +258,7 @@ public class BrutePasswd {
     }
   }
   
-  public static boolean keyIsRight(char[] password) {
+  public boolean keyIsRight(char[] password) {
     try {
       return decryptKey(charsToBytes(password));
     } catch (Exception x) {
@@ -240,7 +266,7 @@ public class BrutePasswd {
     }
   }
   
-  private static byte[] charsToBytes(char[] passwd) {
+  private byte[] charsToBytes(char[] passwd) {
     byte[] buf = new byte[passwd.length * 2];
     
     for (int i = 0, j = 0; i < passwd.length; i++) {
@@ -251,7 +277,7 @@ public class BrutePasswd {
     return buf;
   }
   
-  private static boolean decryptKey(byte[] passwd) {
+  private boolean decryptKey(byte[] passwd) {
     try {
       System.arraycopy(encr, 0, keystream, 0, 20);
       
@@ -283,7 +309,7 @@ public class BrutePasswd {
     }
   }
   
-  private static Certificate readCert(DataInputStream in)
+  private Certificate readCert(DataInputStream in)
   throws IOException, CertificateException,
   NoSuchAlgorithmException {
     String type = in.readUTF();
