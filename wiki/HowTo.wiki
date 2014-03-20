@@ -26,17 +26,17 @@ java -jar AndroidKeystoreBrute.jar <args>
 
 === example for brute-force attack ===
 {{{
-java -jar AndroidKeystoreBrute_v1.03.jar -m 1 -k <...keystore> 
+java -jar AndroidKeystoreBrute_v1.04.jar -m 1 -k <...keystore> 
 }}}
 
 === example for dictionary attack ===
 {{{
-java -jar AndroidKeystoreBrute_v1.03.jar -m 2 -k "C:\\mykeystore.keystore" -d "wordlist.txt" 
+java -jar AndroidKeystoreBrute_v1.04.jar -m 2 -k "C:\\mykeystore.keystore" -d "wordlist.txt" 
 }}}
 
 === example for smart wordlist attack (recommend)===
 {{{
-java -jar AndroidKeystoreBrute_v1.03.jar -m 3 -k "C:\\mykeystore.keystore" -d "wordlist.txt" 
+java -jar AndroidKeystoreBrute_v1.04.jar -m 3 -k "C:\\mykeystore.keystore" -d "wordlist.txt" 
 }}}
 
 *If there are any spaces in path or filenames, you have to use quotes for the path!!*
