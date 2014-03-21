@@ -5,14 +5,14 @@ public class AndroidKeystoreBrute
   static final int BRUTE = 1;
   static final int WORD = 2;
   static final int SWORD = 3;
-  static final String VERSION = "1.04";
+  static final String VERSION = "1.05";
   public static boolean found = false;
   public static boolean saveNewKeystore = false;
   
   public static void main(String[] args)
   throws Exception
   {
-    int minSize = 1;
+    String start = "A";
     int method = 0;
     String keystore = "";
     String dict = "";
@@ -44,9 +44,9 @@ public class AndroidKeystoreBrute
         case "-w":
         saveNewKeystore = true;
         break;
-        case "-min":
+        case "-start":
         i++;
-        minSize = Integer.parseInt(args[i]);
+        start = args[i];
         
         break;
         default:
@@ -62,7 +62,7 @@ public class AndroidKeystoreBrute
     
     if (method == 1) {
       
-      BrutePasswd.doit(keystore, minSize);
+      BrutePasswd.doit(keystore, start);
     }
     
     if (method == 2) {
@@ -89,7 +89,7 @@ public class AndroidKeystoreBrute
     System.out.println("-k <path>  path to your keystore");
     System.out.println("-d <path> dictionary (for method 2 and 3)");
     System.out.println("-w saves the certificate in a new Keystore with same passwort than key\r\n");
-    System.out.println("-min <int> sets minimum size of the word (for method 1) \r\n");
+    System.out.println("-start <String> sets start String of the word (for method 1) \r\n");
     System.out.println("-p use common replacements like '@' for 'a'(for method 3) WARNING - very slow!!\r\n");
     System.out.println("-h prints this helpscreen\r\n");
     
