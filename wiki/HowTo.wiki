@@ -30,7 +30,7 @@ java -jar AndroidKeystoreBrute.jar <args>
 
 === example for brute-force attack ===
 {{{
-java -jar AndroidKeystoreBrute_v1.05.jar -m 1 -k <...keystore> 
+java -jar AndroidKeystoreBrute_v1.05.jar -m 1 -k <...keystore> -start AAAAAA
 }}}
 
 === example for dictionary attack ===
