@@ -93,15 +93,13 @@ public class BrutePasswd extends Thread {
   }
   public static void doit(String keystore) throws Exception {
     
-    doit(keystore,1);
+    doit(keystore,"A");
   }
   
-  public static void doit(String keystore,int min) throws Exception {
+  public static void doit(String keystore,String start) throws Exception {
     
-    char[] pass = new char[min];  
-    for (int i = 0;i < min ;i++ ) {
-      pass[i] = 'A';
-    } // end of for
+    char[] pass = new char[start.length()];  
+    pass = start.toCharArray();
     
     InputStream in = new FileInputStream(keystore);
     currPass = pass;
