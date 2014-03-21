@@ -8,7 +8,7 @@ download [http://www.oracle.com/technetwork/java/javase/downloads/java-se-jre-7-
 
 
 === Download the latest version of the Tool ===
-https://drive.google.com/file/d/0B_Rw7kNjv3BAeDVZcDJtdWtobmM/edit?usp=sharing
+https://drive.google.com/file/d/0B_Rw7kNjv3BATldrLXMwcVRud2c/edit?usp=sharing
 
 
 === execute with ===
