@@ -23,7 +23,7 @@ java -jar AndroidKeystoreBrute.jar <args>
 -k <path>  path to your keystore
 -d <path> dictionary (for method 2 and 3)
 -p use common replacements like '@' for 'a'(for method 3) WARNING - very slow!! 
--min <int> sets the minimum length of the password (for brute force)
+-start <String> sets the start String for the password (for brute force)
 -w writes a new keystore with same password than the key
 -h prints helpscreen
 }}}
