@@ -1,3 +1,4 @@
+package AndroidKeystoreBrute;
 /**
   *
   * Beschreibung
@@ -62,6 +63,13 @@ public class BrutePasswd extends Thread {
     's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2',
     '3', '4', '5', '6', '7', '8', '9',
   };
+
+  static char[] alphabetLower = {
+    'a', 'b', 'c', 'd', 'e', 'f', 'g',
+    'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
+    's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2',
+    '3', '4', '5', '6', '7', '8', '9',
+  };
   
   public BrutePasswd()throws Exception{
     
@@ -70,11 +78,20 @@ public class BrutePasswd extends Thread {
   }
   public void run(){
     char[] str = new char[1];
+    
+    if(AndroidKeystoreBrute.onlyLowerCase == true)
+    {
+        alphabet = alphabetLower;
+    }
+    
     while (!found) { 
       str = nextWord(str);
+      
+      
       if(keyIsRight(str)){
         passwd = String.copyValueOf(str);
         found = true;
+        
         //We are lucky
         System.out.println("Got Password!");
         System.out.println("Password is: " + passwd + " for alias " + alias);
@@ -92,8 +109,15 @@ public class BrutePasswd extends Thread {
     } // end of while
   }
   public static void doit(String keystore) throws Exception {
+
+     //doit(keystore,"A");
+      
+    if(AndroidKeystoreBrute.onlyLowerCase == true)
+        doit(keystore,"a");
+    else
+        doit(keystore,"A");
     
-    doit(keystore,"A");
+          
   }
   
   public static void doit(String keystore,String start) throws Exception {
@@ -152,26 +176,30 @@ public class BrutePasswd extends Thread {
   
   public static char[] nextWord(char[] word, int stelle) {
     
-    if(word[stelle] == alphabet[alphabet.length - 1]) {
-      word[stelle] = alphabet[0];
-      if (stelle > 0) {
-        return nextWord(word, stelle - 1);
-      } else{
-        char[] longerWord = new char[word.length +1];
-        longerWord[0] = alphabet[0];
-        System.arraycopy(word,0,longerWord,1,word.length);
-        return longerWord;
-      }
-    }
-    else{
-      for (int i = 0; i< alphabet.length; i++){
-        if (word[stelle] == alphabet[i]){
-          word[stelle] = alphabet[i+1];
-          break;
+      if(word[stelle] == alphabet[alphabet.length - 1]) 
+       {
+        word[stelle] = alphabet[0];
+        if (stelle > 0) {
+          return nextWord(word, stelle - 1);
+        } else{
+          char[] longerWord = new char[word.length +1];
+          longerWord[0] = alphabet[0];
+          System.arraycopy(word,0,longerWord,1,word.length);
+          return longerWord;
         }
       }
-      return word;
-    }
+      else
+      {
+        for (int i = 0; i< alphabet.length; i++){
+          if (word[stelle] == alphabet[i]){
+            word[stelle] = alphabet[i+1];
+            break;
+          }
+        }
+        return word;
+      }
+    
+    
   }
   
   //--------------------------------JKS Methods------------------------------------------
@@ -257,6 +285,7 @@ public class BrutePasswd extends Thread {
   }
   
   public boolean keyIsRight(char[] password) {
+    
     try {
       return decryptKey(charsToBytes(password));
     } catch (Exception x) {

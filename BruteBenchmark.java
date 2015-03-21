@@ -1,3 +1,5 @@
+package AndroidKeystoreBrute;
+
 /**
   *
   * Beschreibung
@@ -17,7 +19,8 @@ public class BruteBenchmark extends Thread{
   public void run(){
     while(!BrutePasswd.found){
       if((System.nanoTime()- lastCall)> 1000000000){
-        System.out.println("Current Pass: "+ String.copyValueOf(BrutePasswd.currPass)+" || est. "+(BrutePasswd.testedPwds - lastCount)+" Pass/Sec");
+        //System.out.println("Current Pass: "+ String.copyValueOf(BrutePasswd.currPass)+" || est. "+((BrutePasswd.testedPwds - lastCount))+" Pass/Sec" + " || Tested: " + BrutePasswd.testedPwds);
+        System.out.println("Current Pass: "+ String.copyValueOf(BrutePasswd.currPass)+" || est. "+((BrutePasswd.testedPwds - lastCount))+" Pass/Sec");
         System.out.println();
         
         lastCall = System.nanoTime();

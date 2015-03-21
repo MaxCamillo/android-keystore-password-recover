@@ -1,3 +1,5 @@
+package AndroidKeystoreBrute;
+
 /* JKS.java -- implementation of the "JKS" key store.
    Copyright (C) 2003  Casey Marshall <rsdio@metastatic.org>
 

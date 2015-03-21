@@ -1,3 +1,5 @@
+package AndroidKeystoreBrute;
+
 /**
   *
   * Beschreibung
@@ -54,10 +56,15 @@ public class SmartWordlistPasswd {
   private static ArrayList<String> LetterCombos = new ArrayList<String>();
   
   
-  public static void doit(String keystore,String wordlist,boolean permutations ) throws Exception {
+  public static void doit(String keystore,String wordlist,boolean permutations) throws Exception {
     String pass = "a";
     InputStream in = new FileInputStream(keystore);
     int plength = 1;
+    
+    /*
+    if(AndroidKeystoreBrute.minlenght > 0)
+        plength = AndroidKeystoreBrute.minlenght;
+    */
     
     try {
       j = new JKS();
@@ -96,14 +103,20 @@ public class SmartWordlistPasswd {
         
         if(!permutations){
           words.add(word);
+
           //Capitalize first Letter
           char[] stringArray = word.toCharArray();
-          //skip if already is uppercase
-          if(Character.isUpperCase(stringArray[0]))
-          continue;
-          stringArray[0] = Character.toUpperCase(stringArray[0]);
-          word = new String(stringArray);
-          words.add(word);
+          
+          if(AndroidKeystoreBrute.onlyLowerCase == false)
+          {
+            //skip if already is uppercase
+            if(Character.isUpperCase(stringArray[0]))
+            continue;
+            stringArray[0] = Character.toUpperCase(stringArray[0]);
+            word = new String(stringArray);
+            words.add(word);
+          }
+          
         }else{
           //use common replacements
           //let's get some common replacement letters
@@ -112,7 +125,7 @@ public class SmartWordlistPasswd {
           LetterCombos.add("bB8");
           LetterCombos.add("cC(");
           LetterCombos.add("dD");
-          LetterCombos.add("eE3€");
+          LetterCombos.add("eE3?");
           LetterCombos.add("fF");
           LetterCombos.add("gG");
           LetterCombos.add("hH");
@@ -191,17 +204,34 @@ public class SmartWordlistPasswd {
           testedPwds++;
           
           //if this throws an Exception; pwd  is false
-          if (keyIsRight(currentPass.toCharArray())) {
-            found = true;
-            passwd = currentPass;
-            
-            return;
+          
+          
+          if(AndroidKeystoreBrute.minlenght > 0 && currentPass.length() < AndroidKeystoreBrute.minlenght)
+          {
+              // IF ENTERED HERE, THE PASS GENERATED LENGHT IS LESS THAN THE MINIMUM LENGHT SET BY -l
+          
+              // DUE TO SOME REASON, WHEN THE PASS LENGHT IS > 20 THE PASSLENGTH FUNCION DOENST WORK
+          }
+          else
+          {
+            // TRY PASSWORD IF LENGTH IS GREATER THAN LENGTH
+              
+            if (keyIsRight(currentPass.toCharArray())) 
+            {
+              found = true;
+              passwd = currentPass;
+
+              return;              
+            }
+          
+
           }
         } catch (Exception e) {
           //passwd was wrong
           // System.out.println("fail");
         }
       } else {
+          
         int kinc = k + 1;
         
         for (String o : words) {
