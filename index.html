@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html>
   <head>
@@ -26,169 +27,149 @@
           <li><a href="https://github.com/MaxCamillo/android-keystore-password-recover/tarball/master">Download <strong>TAR Ball</strong></a></li>
           <li><a href="https://github.com/MaxCamillo/android-keystore-password-recover">View On <strong>GitHub</strong></a></li>
         </ul>
+		
+		<p class="view"><a href="index.html">Home </a></p>
+		<p class="view"><a href="howto.html">How To </a></p>
+
       </header>
+
       <section>
+	  
         <h3>
 <a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
 
-
-<ol>
-<li>Android Keystore Password Recovery #</li></ol>
-
+<article class="markdown-body entry-content" itemprop="mainContentOfPage"><h1>
+<a id="user-content-android-keystore-password-recovery" class="anchor" href="#android-keystore-password-recovery" aria-hidden="true"><span class="octicon octicon-link"></span></a>Android Keystore Password Recovery</h1>
 
 <p>A few weeks ago I just forgot the password for my android keystore, so I couldnt update my app for the market. So I decided to code a little bruteforcing tool to recovery my password.</p>
 
+<p><strong>Java 7 is required to run this tool!!</strong></p>
 
-<ul>
-<li>
-<ul>
-<li>Java 7 is required to run this tool!!**</li></ul></li></ul>
+<p>download <a href="http://www.oracle.com/technetwork/java/javase/downloads/java-se-jre-7-download-432155.html">here</a></p>
 
-<p>download [here](<a class="externallink" href="http://www.oracle.com/technetwork/java/javase/downloads/java-se-jre-7-download-432155.html" rel="nofollow" title="http://www.oracle.com/technetwork/java/javase/downloads/java-se-jre-7-download-432155.html">http://www.oracle.com/technetwork/java/javase/downloads/java-se-jre-7-download-432155.html</a>)</p>
+<p><strong>Download latest version:</strong>
+<a href="AndroidKeystoreBrute_v1.06.jar">AndroidKeystoreBrute_v1.06.jar</a></p>
 
-<ul>
-<li>
-<ul>
-<li>Download compiled .jar file :(**</li></ul></li></ul>
-<p><a class="externallink" href="https://drive.google.com/file/d/0B_Rw7kNjv3BATldrLXMwcVRud2c/edit?usp=sharing" rel="nofollow" title="https://drive.google.com/file/d/0B_Rw7kNjv3BATldrLXMwcVRud2c/edit?usp=sharing">https://drive.google.com/file/d/0B_Rw7kNjv3BATldrLXMwcVRud2c/edit?usp=sharing</a></p>
+<h1>
+<a id="user-content-details" class="anchor" href="#details" aria-hidden="true"><span class="octicon octicon-link"></span></a>Details</h1>
 
+<p>The tool recovers the key for your alias. By default this is the same like the keystore password. <del>I will try to add an option to recover both passwords if they are not equal.</del> Now there is an option to save the key in a new keystore with the same password than the key! You can use this, to sign your apk and update your app in the Playstore.</p>
 
-
-<ol>
-<li>Details #</li></ol>
-<p>The tool recovers the key for your alias. By default this is the same like the keystore password. ~~I will try to add an option to recover both passwords if they are not equal.~~ Now there is an option to save the key in a new keystore with the same password than the key! You can use this, to sign your apk and update your app in the Playstore.</p>
 <p>There are 3 Methods to recover your keystore password:</p>
-<pre>
- 1. - Simply Bruteforce
- 1. - Dictionary Attack
- 1. - Smart Wordlist Attack
-</pre>
+
+<ol class="task-list">
+<li>- Simply Bruteforce</li>
+<li>- Dictionary Attack</li>
+<li>- Smart Wordlist Attack</li>
+</ol>
+
 <p>In my opinion the last option is the best. You specify some password segments in a textfile. All the segments will be permute and mixed together with numbers.</p>
+
 <p>for example:</p>
+
 <p>your password is: got2loveYa123
-in your dictionary should be:
-```
-got
+in your dictionary should be:</p>
+
+<pre><code>got
 love
 ya
-```
-Numbers are added automatically. Each word will be added twice, once like you wrote and once with the first letter capitalized, so you just have to write your words once if your are not shure if you first letter was uppercase or lowercase</p>
+</code></pre>
+
+<p>Numbers are added automatically. Each word will be added twice, once like you wrote and once with the first letter capitalized, so you just have to write your words once if your are not shure if you first letter was uppercase or lowercase</p>
+
 <p>Good luck</p>
-<p>Thanks to Casey Marshall &#60;rsdio@metastatic.org&#62; for JKS API <a class="externallink" href="http://metastatic.org/source/JKS.html" rel="nofollow" title="http://metastatic.org/source/JKS.html">http://metastatic.org/source/JKS.html</a></p>
 
----
+<p>Thanks to Casey Marshall <a href="mailto:rsdio@metastatic.org">rsdio@metastatic.org</a> for JKS API <a href="http://metastatic.org/source/JKS.html">http://metastatic.org/source/JKS.html</a></p>
 
+<hr>
 
+<h1>
+<a id="user-content-todo" class="anchor" href="#todo" aria-hidden="true"><span class="octicon octicon-link"></span></a>TODO</h1>
 
-<ol>
-<li>TODO #</li></ol>
+<ul class="task-list">
+<li>Possibility to specify chars used for bruteforce (regex)</li>
+<li>Maybe multithreading to be faster on multicore systems</li>
+<li><del>Recover both passwords (keystore and key) if they are not equal</del></li>
+</ul>
 
-<pre>
- * Possibility to specify chars used for bruteforce (regex)
- * Maybe multithreading to be faster on multicore systems
- * ~~Recover both passwords (keystore and key) if they are not equal~~
+<hr>
 
+<h1>
+<a id="user-content-changelog" class="anchor" href="#changelog" aria-hidden="true"><span class="octicon octicon-link"></span></a>Changelog</h1>
 
+<p><strong>version 1.06</strong></p>
 
----
+<ul class="task-list">
+<li>-onlylower     for only lowercase letters. Works for method 1 and 3.</li>
+<li>-l <len>         specify the minimum length of password in method 3.</li>
+<li> Thanks to Rafael Fonseca for this update </li>
+</ul>
 
+<p><strong>version 1.05</strong></p>
 
-</pre>
-<ol>
-<li>Changelog #</li></ol>
+<ul class="task-list">
+<li>Now you can set the start String for Brute Force, so you can continue if you had to terminate the tool</li>
+</ul>
 
+<p><strong>version 1.04</strong></p>
 
-<ul>
-<li>
-<ul>
-<li>version 1.05**</li></ul></li></ul>
-<pre>
- * Now you can set the start String for Brute Force, so you can continue if you had to terminate the tool
+<ul class="task-list">
+<li>Now with MultiThreading for BruteForcing. Should give you a good chance for Passwords that are 6 or 7 chars long</li>
+</ul>
 
+<p><strong>version 1.03</strong></p>
 
-</pre>
-<ul>
-<li>
-<ul>
-<li>version 1.04**</li></ul></li></ul>
-<pre>
- * Now with MultiThreading for BruteForcing. Should give you a good chance for Passwords that are 6 or 7 chars long
+<ul class="task-list">
+<li><p>Now there is an option to save the key in a new keystore with the same password than the key!</p></li>
+<li><p>New option to specify the minimum length of the password (for brute force)</p></li>
+</ul>
 
+<p><strong>version 1.02</strong></p>
 
-</pre>
-<ul>
-<li>
-<ul>
-<li>version 1.03**</li></ul></li></ul>
-<pre>
- * Now there is an option to save the key in a new keystore with the same password than the key!
+<ul class="task-list">
+<li>added new option for smart wordlist attack. With the parameter '-p' you activate the common replacements permutation mode. Thanks to Jeff Lauder, who wrote the code for this. More Information are in the wiki</li>
+</ul>
 
- * New option to specify the minimum length of the password (for brute force)
+<p><strong>version 1.01</strong></p>
 
+<ul class="task-list">
+<li>small fixes</li>
+</ul>
 
-</pre>
-<ul>
-<li>
-<ul>
-<li>version 1.02**</li></ul></li></ul>
+<hr>
 
-<pre>
- * added new option for smart wordlist attack. With the parameter &#39;-p&#39; you activate the common replacements permutation mode. Thanks to Jeff Lauder, who wrote the code for this. More Information are in the wiki
-
-
-</pre>
-<ul>
-<li>
-<ul>
-<li>version 1.01**</li></ul></li></ul>
-<pre>
- * small fixes
-
----
-
-
-
-
-</pre>
-<ol>
-<li>
-<ol>
-<li>P.S. ##</li></ol></li></ol>
+<h2>
+<a id="user-content-ps" class="anchor" href="#ps" aria-hidden="true"><span class="octicon octicon-link"></span></a>P.S.</h2>
 
 <p>If I helped you, you may want donate a few cents, so i can buy me a beer :D</p>
 
-<ol>
-<li>
-<ol>
-<li>
-<ol>
-<li>Thanks for Donation: ###</li></ol></li></ol></li></ol>
+<h3>
+<a id="user-content-thanks-for-donation" class="anchor" href="#thanks-for-donation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Thanks for Donation:</h3>
 
-<pre>
- * SebyFactory
- * Martin Harvey
- * Joshua Slauson
- * Roman Marak
- * Orestis Anavaloglou
- * Jan Teluch
- * Martin Sander
- * Fabrice Marchal
- * Louis Moga
- * Ole Jørgen Brønner
- * Yasith Vidanaarachchi
- * Marcus Honnacker
- * Kidinov Andrey
- * michael sweeney
- * Ali Karabalci
- * Karthik Venkatesh
- * Musaqil Musabeyli
- * Benjamin Allison
-</pre>
-<p>[Donate](<a class="externallink" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&#38;hosted_button_id=46BBKZZLLZXV4" rel="nofollow" title="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&#38;hosted_button_id=46BBKZZLLZXV4">https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&#38;hosted_button_id=46BBKZZLLZXV4</a>)</p>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/MaxCamillo">MaxCamillo</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+<ul class="task-list">
+<li>SebyFactory</li>
+<li>Martin Harvey</li>
+<li>Joshua Slauson</li>
+<li>Roman Marak</li>
+<li>Orestis Anavaloglou</li>
+<li>Jan Teluch</li>
+<li>Martin Sander</li>
+<li>Fabrice Marchal</li>
+<li>Louis Moga</li>
+<li>Ole Jørgen Brønner</li>
+<li>Yasith Vidanaarachchi</li>
+<li>Marcus Honnacker</li>
+<li>Kidinov Andrey</li>
+<li>michael sweeney</li>
+<li>Ali Karabalci</li>
+<li>Karthik Venkatesh</li>
+<li>Musaqil Musabeyli</li>
+<li>Benjamin Allison</li>
+</ul>
+
+<p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=46BBKZZLLZXV4">Donate</a></p>
+</article>
+
     </div>
     <script src="javascripts/scale.fix.js"></script>
     

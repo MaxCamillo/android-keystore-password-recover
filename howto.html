@@ -1,0 +1,95 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Android-keystore-password-recover by MaxCamillo</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Android-keystore-password-recover</h1>
+        <p>Automatically exported from code.google.com/p/android-keystore-password-recover</p>
+
+        <p class="view"><a href="https://github.com/MaxCamillo/android-keystore-password-recover">View the Project on GitHub <small>MaxCamillo/android-keystore-password-recover</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/MaxCamillo/android-keystore-password-recover/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/MaxCamillo/android-keystore-password-recover/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/MaxCamillo/android-keystore-password-recover">View On <strong>GitHub</strong></a></li>
+        </ul>
+		
+				
+		<p class="view"><a href="index.html">Home </a></p>
+		<p class="view"><a href="howto.html">How To </a></p>
+      </header>
+      <section>
+        <h3>
+<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+
+<article class="markdown-body entry-content" itemprop="mainContentOfPage"><h1>
+<a id="user-content-how-to" class="anchor" href="#how-to" aria-hidden="true"><span class="octicon octicon-link"></span></a>How To</h1>
+
+<p><strong>Java 7 is required to run this tool!!</strong></p>
+
+<p>download <a href="http://www.oracle.com/technetwork/java/javase/downloads/java-se-jre-7-download-432155.html">here</a></p>
+
+
+
+<h3>
+<a id="user-content-execute-with" class="anchor" href="#execute-with" aria-hidden="true"><span class="octicon octicon-link"></span></a>execute with</h3>
+
+<pre><code>java -jar AndroidKeystoreBrute.jar &lt;args&gt;
+</code></pre>
+
+<h3>
+<a id="user-content-possible-args" class="anchor" href="#possible-args" aria-hidden="true"><span class="octicon octicon-link"></span></a>possible args</h3>
+
+<pre><code>-m &lt;1..3&gt; Method
+-k &lt;path&gt;  path to your keystore
+-d &lt;path&gt; dictionary (for method 2 and 3)
+-p use common replacements like '@' for 'a'(for method 3) WARNING - very slow!! 
+-start &lt;String&gt; sets the start String for the password (for brute force)
+-w writes a new keystore with same password than the key
+-h prints helpscreen
+</code></pre>
+
+<h3>
+<a id="user-content-example-for-brute-force-attack" class="anchor" href="#example-for-brute-force-attack" aria-hidden="true"><span class="octicon octicon-link"></span></a>example for brute-force attack</h3>
+
+<pre><code>java -jar AndroidKeystoreBrute_v1.06.jar -m 1 -k &lt;...keystore&gt; -start AAAAAA
+</code></pre>
+
+<h3>
+<a id="user-content-example-for-dictionary-attack" class="anchor" href="#example-for-dictionary-attack" aria-hidden="true"><span class="octicon octicon-link"></span></a>example for dictionary attack</h3>
+
+<pre><code>java -jar AndroidKeystoreBrute_v1.06.jar -m 2 -k "C:\\mykeystore.keystore" -d "wordlist.txt" 
+</code></pre>
+
+<h3>
+<a id="user-content-example-for-smart-wordlist-attack-recommend" class="anchor" href="#example-for-smart-wordlist-attack-recommend" aria-hidden="true"><span class="octicon octicon-link"></span></a>example for smart wordlist attack (recommend)</h3>
+
+<pre><code>java -jar AndroidKeystoreBrute_v1.06.jar -m 3 -k "C:\\mykeystore.keystore" -d "wordlist.txt" 
+</code></pre>
+
+<p><strong>If there are any spaces in path or filenames, you have to use quotes for the path!!</strong></p>
+
+<p>If you want to work on your pc while this is running, just decrease the priority of java.exe (dont't know how to do it in Linux etc..)</p>
+
+<p>If you have to interrupt the brute force you can restart it with adding -start "LASTPWD"</p>
+</article>
+
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
