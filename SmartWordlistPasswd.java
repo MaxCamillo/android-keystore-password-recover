@@ -121,27 +121,27 @@ public class SmartWordlistPasswd {
           //use common replacements
           //let's get some common replacement letters
           
-          LetterCombos.add("aA@4^");
+          LetterCombos.add("aA@4^áÁ");
           LetterCombos.add("bB8");
           LetterCombos.add("cC(");
           LetterCombos.add("dD");
-          LetterCombos.add("eE3?");
+          LetterCombos.add("eE3?éÉ");
           LetterCombos.add("fF");
           LetterCombos.add("gG");
           LetterCombos.add("hH");
-          LetterCombos.add("iIl1!|");
+          LetterCombos.add("iIl1!|íÍ");
           LetterCombos.add("jJ");
           LetterCombos.add("kK");
           LetterCombos.add("lL1");
           LetterCombos.add("mM");
-          LetterCombos.add("nN");
-          LetterCombos.add("oO0");
+          LetterCombos.add("nNñÑ");
+          LetterCombos.add("oO0óÓ");
           LetterCombos.add("pP");
           LetterCombos.add("qQ");
           LetterCombos.add("rR");
           LetterCombos.add("sS5$");
           LetterCombos.add("tT+7");
-          LetterCombos.add("uU");
+          LetterCombos.add("uUúÚ");
           LetterCombos.add("vV");
           LetterCombos.add("wW");
           LetterCombos.add("xX");
