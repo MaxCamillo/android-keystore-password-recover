@@ -48,7 +48,7 @@
 <p>download <a href="http://www.oracle.com/technetwork/java/javase/downloads/java-se-jre-7-download-432155.html">here</a></p>
 
 <p><strong>Download latest version:</strong>
-<a href="AndroidKeystoreBrute_v1.06.jar">AndroidKeystoreBrute_v1.06.jar</a></p>
+<a href="AndroidKeystoreBrute_v1.06.jar">Android_Keystore_Password_Recover_1.07.jar</a></p>
 
 <h1>
 <a id="user-content-details" class="anchor" href="#details" aria-hidden="true"><span class="octicon octicon-link"></span></a>Details</h1>
@@ -88,7 +88,6 @@ ya
 
 <ul class="task-list">
 <li>Possibility to specify chars used for bruteforce (regex)</li>
-<li>Maybe multithreading to be faster on multicore systems</li>
 <li><del>Recover both passwords (keystore and key) if they are not equal</del></li>
 </ul>
 
@@ -97,12 +96,22 @@ ya
 <h1>
 <a id="user-content-changelog" class="anchor" href="#changelog" aria-hidden="true"><span class="octicon octicon-link"></span></a>Changelog</h1>
 
+<p><strong>version 1.07</strong></p>
+
+<ul class="task-list">
+<li>The SmartWordlist method is now multithreaded for increased performance on multi-core processors.</li>
+<li>The SmartWordlist method now automatically saves its progress every 30 seconds. If the tool is interrupted before it finishes checking all combinations in the word list it will resume from the last save.</li>
+<li> Added new -firstchars parameter for use with SmartWordlist method. This parameter allows the user to specify known characters at the start of the password. For example, if the user knows that the forgotten password starts with "Apple", the tool can insert "Apple" at the front of tested passwords. </li>
+<li>Added new -pieces parameter for use with SmartWordlist method. This parameter allows the user to specify minimum and maximum number of word pieces to use when building passwords. The tool will start at the first combination of minimum word pieces and stop at the last combination of maximum word pieces.</li>
+<li>Thanks to ravensbane for this update!</li>
+</ul>
+
 <p><strong>version 1.06</strong></p>
 
 <ul class="task-list">
 <li>-onlylower     for only lowercase letters. Works for method 1 and 3.</li>
 <li>-l <len>         specify the minimum length of password in method 3.</li>
-<li> Thanks to Rafael Fonseca for this update </li>
+<li> Thanks to Rafael Fonseca for this update !</li>
 </ul>
 
 <p><strong>version 1.05</strong></p>
