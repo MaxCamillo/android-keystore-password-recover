@@ -1,7 +1,7 @@
 package AndroidKeystoreBrute;
 
 /** ravensbane
-* 
+*
 * @version 1.0 on 20.2.2016
 * @author
 */
@@ -180,7 +180,7 @@ public class SmartWordlistProducer implements Runnable {
 
         // use common replacements
         // let's get some common replacement letters
-        LetterCombos.add("aA@4^á�?");
+        LetterCombos.add("aA@4^á�?");
         LetterCombos.add("bB8");
         LetterCombos.add("cC(");
         LetterCombos.add("dD");
@@ -188,7 +188,7 @@ public class SmartWordlistProducer implements Runnable {
         LetterCombos.add("fF");
         LetterCombos.add("gG");
         LetterCombos.add("hH");
-        LetterCombos.add("iIl1!|í�?");
+        LetterCombos.add("iIl1!|í�?");
         LetterCombos.add("jJ");
         LetterCombos.add("kK");
         LetterCombos.add("lL1");
@@ -226,6 +226,24 @@ public class SmartWordlistProducer implements Runnable {
 
     // store the last key in the map
     wordsLast = "9";
+
+    // add special chars
+    if (AndroidKeystoreBrute.disableSpecialChars == false) {
+      char[] specialChars = {
+          '!', '"', '@', '#', '$', '%', '&', '/', '{', '>',
+          '}', '(', ')', '[', ']', '=', '?', '+', '`', '|',
+          '^', '~', '*', '-', '_', '.', ':', ',', ';', '<',
+          '\'', '\\',
+      };
+
+      for (int i = 0; i < specialChars.length; i++) {
+        String character = String.valueOf(specialChars[i]);
+        localWords.put(previousWord, character);
+        previousWord = character;
+      }
+
+      wordsLast = "\\";
+    }
 
     return localWords;
   }
