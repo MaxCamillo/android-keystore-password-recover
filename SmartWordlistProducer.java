@@ -180,27 +180,27 @@ public class SmartWordlistProducer implements Runnable {
 
         // use common replacements
         // let's get some common replacement letters
-        LetterCombos.add("aA@4^á�?");
+        LetterCombos.add("aA@4^Ã¡Ã?");
         LetterCombos.add("bB8");
         LetterCombos.add("cC(");
         LetterCombos.add("dD");
-        LetterCombos.add("eE3?éÉ");
+        LetterCombos.add("eE3?Ã©Ã‰");
         LetterCombos.add("fF");
         LetterCombos.add("gG");
         LetterCombos.add("hH");
-        LetterCombos.add("iIl1!|í�?");
+        LetterCombos.add("iIl1!|Ã­Ã?");
         LetterCombos.add("jJ");
         LetterCombos.add("kK");
         LetterCombos.add("lL1");
         LetterCombos.add("mM");
-        LetterCombos.add("nNñÑ");
-        LetterCombos.add("oO0óÓ");
+        LetterCombos.add("nNÃ±Ã‘");
+        LetterCombos.add("oO0Ã³Ã“");
         LetterCombos.add("pP");
         LetterCombos.add("qQ");
         LetterCombos.add("rR");
         LetterCombos.add("sS5$");
         LetterCombos.add("tT+7");
-        LetterCombos.add("uUúÚ");
+        LetterCombos.add("uUÃºÃš");
         LetterCombos.add("vV");
         LetterCombos.add("wW");
         LetterCombos.add("xX");
