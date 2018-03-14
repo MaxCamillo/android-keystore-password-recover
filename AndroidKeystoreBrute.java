@@ -12,6 +12,7 @@ public class AndroidKeystoreBrute {
   static final String VERSION = "1.07";
   public static boolean saveNewKeystore = false;
   public static boolean onlyLowerCase = false;
+  public static boolean disableSpecialChars = false;
   public static boolean permutations = false;
   public static int minlength = 0;
   public static int minpieces = 1;
@@ -62,6 +63,9 @@ public class AndroidKeystoreBrute {
         break;
       case "-onlylower":
         onlyLowerCase = true;
+        break;
+      case "-nospecials":
+        disableSpecialChars = true;
         break;
       case "-firstchars":
         i++;
@@ -121,15 +125,16 @@ public class AndroidKeystoreBrute {
     System.out.println("-start <String> sets start String of the word (for method 1)");
     System.out.println("-firstchars <String> specify first characters of the password (for method 3)");
     System.out.println("-pieces <min> <max> specify the min and max number of pieces to use when building passwords (for method 3)\r\n");
-    
+
+    System.out.println("-nospecials to not try special characters in password (makes cracking faster for simple passwords)");
     System.out.println("-onlylower for only lowercase letters");
     System.out.println("-w saves the certificate in a new Keystore with same password as key");
     System.out.println("-p use common replacements like '@' for 'a'(for method 3) WARNING: This is very slow. Do not use on dictionaries with more than 250 entries.\r\n");
     System.out.println("-h prints this helpscreen\r\n");
-    
+
     long maxBytes = Runtime.getRuntime().maxMemory();
     System.out.println("Max memory: " + maxBytes / 1024L / 1024L + "M\r\n");
-        
+
     System.out.println("v1.06 updated by rafaelwbr; v1.07 updated by ravensbane");
     System.out.println("For updates visit http://code.google.com/p/android-keystore-password-recover/");
   }

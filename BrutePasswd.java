@@ -53,6 +53,13 @@ public class BrutePasswd extends Thread {
       '3', '4', '5', '6', '7', '8', '9',
   };
 
+  static char[] specialChars = {
+      '!', '"', '@', '#', '$', '%', '&', '/', '{', '>',
+      '}', '(', ')', '[', ']', '=', '?', '+', '`', '|',
+      '^', '~', '*', '-', '_', '.', ':', ',', ';', '<',
+      '\'', '\\',
+  };
+
   public BrutePasswd() throws Exception {
 
     FileInputStream in = new FileInputStream(keystoreFileName);
@@ -64,6 +71,14 @@ public class BrutePasswd extends Thread {
 
     if (AndroidKeystoreBrute.onlyLowerCase == true) {
       alphabet = alphabetLower;
+    }
+
+    if (AndroidKeystoreBrute.disableSpecialChars == false) {
+      StringBuilder sb = new StringBuilder(64);
+      sb.append(alphabet);
+      sb.append(specialChars);
+
+      alphabet = sb.toString().toCharArray();
     }
 
     while (!found) {
