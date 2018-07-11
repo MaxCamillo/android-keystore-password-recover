@@ -1,1 +1,1 @@
-Main-Class: AndroidKeystoreBrute.AndroidKeystoreBrute
+Main-Class: AndroidKeystoreBrute
